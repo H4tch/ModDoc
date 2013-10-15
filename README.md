@@ -1,9 +1,9 @@
 ModDoc
 ======
 
-Open design for a declarative Mod definition language for game development. 
-Uses [TOML](https://github.com/mojombo/toml#toml) as the underlying markup
-language.
+Open design document for a declarative Mod definition language for game
+development. Uses [TOML](https://github.com/mojombo/toml#toml) as the
+underlying markup language.
 
 
 ## Example
@@ -14,7 +14,7 @@ name 	= "MoonGrav"
 version	= 0.9
 release = "spantacular"
 author 	= "yourmom"
-[ links ]
+[links]
 	website 	= "forums.epicness.net/h4tch/threads/MoonGrav-0-9a"
     contribute 	= "http://github.com/h4tch/ModDoc/"
 	donate  	= "http://WeWantYourMoney.com/"
@@ -32,7 +32,7 @@ that any piece of data is compatible with everything else, this only works if
 components contain the minimal essentials and don't change often. See next point.)
 
 ```toml
-[[ require ]]    # This is a Table Array for multiple dependencies.
+[[ require ]]
 	mod     	= "default.physics"
 	systems 	= ["Gravity"]
 	components	= ["Position", "ExternalForce"]
@@ -53,11 +53,14 @@ and depend on.
 
 ### Components
 ```toml
-[Mass]
+[[ component ]]
+    name    = "Mass"
 	value 	= 0.0
 	invMass	= 0.0
+	[flags]
+	   invMass = "NetWorkTransient"
 ```
-
+    
 ### Systems
 Since MoonGrav was in the export list of Systems, it can find the definition by
 looking up the table. However, what if it wasn't defined? Should I require a special
@@ -69,8 +72,8 @@ is a Velocity Component with it's name set to "Velocity".(Actually future versio
 remove the Velocity structure to shift the focus the dynamic registration system.)
 
 ```toml
-[MoonGrav]
-	name 	= "Gravity"
+[[ system ]]
+	name 	= "MoonGrav"
 	script  = "MoonGrav.lua"
 	type 	= ["logic"]
 	cycle	= 1
@@ -84,8 +87,9 @@ remove the Velocity structure to shift the focus the dynamic registration system
 Entity definitions contain a set of Components, optionally giving them default
 values.
 
-```
-[SlipperTroll]
+```toml
+[[ entity ]]
+    name = "SlipperTroll"
     [Mass]
         value = 0.2
     [ExternalForce]
@@ -102,7 +106,7 @@ Here are some possible file extensions I might use. I'm leaning towards "**.dm**
     .dm     -- Dungeon Master, uh-ehm, Definition Module.
     .modme  -- I like this one, although depending on the font, it makes the modme
             -- look too long with a non-fixed-width font. E.g. "Gravity.modme"
-    .modit  -- There is a company Moddit at "www.mod.it" which allows people to
+    .modit  -- There is a company Modit at "www.mod.it" which allows people to
             -- make web apps and games.
 ```
 
