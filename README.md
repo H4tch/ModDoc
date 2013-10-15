@@ -13,7 +13,7 @@ language.
 name 	= "MoonGrav"
 version	= 0.9
 release = "spantacular"
-author 	= "YourMom"
+author 	= "yourmom"
 [ links ]
 	website 	= "forums.epicness.net/h4tch/threads/MoonGrav-0-9a"
     contribute 	= "http://github.com/h4tch/ModDoc/"
@@ -33,25 +33,28 @@ components contain the minimal essentials and don't change often. See next point
 
 ```toml
 [[ require ]]    # This is a Table Array for multiple dependencies.
-	mod     	= "default"
+	mod     	= "default.physics"
 	systems 	= ["Gravity"]
 	components	= ["Position", "ExternalForce"]
+[[ require ]]
+	mod     	= "default.animation"
 ```
 
 ### Exporting Definitions
-Mods can be run in their own namespace and choose to export symbols for other mods
-to use and depend on.
+Mods run in their own namespace and can export symbols for other mods to use
+and depend on.
 
 ```toml
 [export]
-    systems = ["MoonGrav"]
-    components = ["MatianMass"]
+    systems 	= ["MoonGrav"]
+	components 	= ["Mass"]
+    entities    = ["SlipperTroll"]
 ```
 
 ### Components
 ```toml
 [Mass]
-	mass 	= 0.0
+	value 	= 0.0
 	invMass	= 0.0
 ```
 
@@ -68,18 +71,31 @@ remove the Velocity structure to shift the focus the dynamic registration system
 ```toml
 [MoonGrav]
 	name 	= "Gravity"
-	script 	= "lua"
+	script  = "MoonGrav.lua"
 	type 	= ["logic"]
-	cycle	= ""
+	cycle	= 1
 	group1 	= ["Position", "Mass", "ExternalForce"]
 	group2 	= ["Position", "Mass"]
 	depends	= []
 	affects = ["ExternalForce"]
 ```
 
+### Entiy Definitions
+Entity definitions contain a set of Components, optionally giving them default
+values.
+
+```
+[SlipperTroll]
+    [Mass]
+        value = 0.2
+    [ExternalForce]
+    [Position]
+```
+
 
 ## File Extensions
 Here are some possible file extensions I might use. I'm leaning towards "**.dm**".
+```
     .def    -- Generic Definition file
     .decl   -- Generic Declaration file. Turns out id software has "decl files"
             -- but none with ".decl" as the extension.(They do have ".def" though)
@@ -88,5 +104,5 @@ Here are some possible file extensions I might use. I'm leaning towards "**.dm**
             -- look too long with a non-fixed-width font. E.g. "Gravity.modme"
     .modit  -- There is a company Moddit at "www.mod.it" which allows people to
             -- make web apps and games.
-
+```
 

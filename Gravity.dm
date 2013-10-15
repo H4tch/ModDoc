@@ -34,7 +34,7 @@ author 	= "YourMom13"
 
 [[ component ]]
 	name 	= "Mass"
-	[Data] # This probably isn't needed.
+	[Data] 	# This probably isn't needed.
 		mass 	= 0.0
 		invMass	= 0.0
 
