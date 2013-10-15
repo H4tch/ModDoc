@@ -18,7 +18,7 @@ author 	= "YourMom13"
 [ links ]
 	website 	= "forums.epicness.net/h4tch/threads/MoonGrav-0-9a"
     contribute 	= "http://github.com/h4tch/ModDoc/"
-	donate($13.37 suggested) = "http://WeWantYourMoney.com/"
+	donate  	= "http://WeWantYourMoney.com/"
 
 
 # Support specific dependencies?

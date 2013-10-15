@@ -1,8 +1,9 @@
 ModDoc
 ======
 
-Open design for a declarative Mod definition language for game development.
-Uses [TOML](https://github.com/mojombo/toml#toml) as the underlying language.
+Open design for a declarative Mod definition language for game development. 
+Uses [TOML](https://github.com/mojombo/toml#toml) as the underlying markup
+language.
 
 
 ## Example
@@ -14,9 +15,9 @@ version	= 0.9
 release = "spantacular"
 author 	= "YourMom"
 [ links ]
-	website    = "forums.epicness.net/h4tch/threads/MoonGrav-0-9a"
-    contribute  = "http://github.com/h4tch/ModDoc/"
-	donate($13.37 suggested) = "http://WeWantYourMoney.com/"
+	website 	= "forums.epicness.net/h4tch/threads/MoonGrav-0-9a"
+    contribute 	= "http://github.com/h4tch/ModDoc/"
+	donate  	= "http://WeWantYourMoney.com/"
 ```
 
 
