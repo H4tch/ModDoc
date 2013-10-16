@@ -108,5 +108,7 @@ Here are some possible file extensions I might use. I'm leaning towards "**.dm**
             -- look too long with a non-fixed-width font. E.g. "Gravity.modme"
     .modit  -- There is a company Modit at "www.mod.it" which allows people to
             -- make web apps and games.
+    .stuff  -- An of course its "taken", by a gaming company for doing this exact
+            -- thing no less.
 ```
 
