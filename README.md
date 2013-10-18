@@ -3,7 +3,8 @@ ModDoc
 
 Open design document for a declarative Mod definition language for game
 development. Uses [TOML](https://github.com/mojombo/toml#toml) as the
-underlying markup language.
+underlying markup language.(I may create a superset of Toml, though. If I
+do, I'll make sure the extension is minimal. )
 
 
 ## Example
@@ -14,6 +15,7 @@ name 	= "MoonGrav"
 version	= 0.9
 release = "spantacular"
 author 	= "yourmom"
+
 [links]
 	website 	= "forums.epicness.net/h4tch/threads/MoonGrav-0-9a"
     contribute 	= "http://github.com/h4tch/ModDoc/"
@@ -47,7 +49,7 @@ and depend on.
 ```toml
 [export]
     systems 	= ["MoonGrav"]
-	components 	= ["Mass"]
+	components 	= ["Mass", "MoonShot"]
     entities    = ["SlipperTroll"]
 ```
 
@@ -59,6 +61,17 @@ and depend on.
 	invMass	= 0.0
 	[flags]
 	   invMass = "NetWorkTransient"
+
+# What about something like this?
+# Components can contain "symbols", or classnames.
+# If a Component only has one field that isn't prefedined, in this case "value",
+# then the object can be registered as that type.
+[[ component ]]
+    name = "MoonShot"
+    value = Vectord # I think I should I add Vector as a primitve type.
+    [[ Field ]]
+        name    = "test"
+        value   = 0.0
 ```
     
 ### Systems
@@ -109,4 +122,52 @@ Here are some possible file extensions I might use. I'm leaning towards "**.dm**
     .modit  -- There is a company Modit at "www.mod.it" which allows people to
             -- make web apps and games.
 ```
+
+
+## Experimental
+This introduces the ":" specifier for creating a named instance of a table.
+The following is somewhat inspired from **Qml.** 
+
+```toml
+[Rectangle]
+    width   = 0.0
+    height  = 0.0
+    color   = "white"
+    [anchors]
+        center  = "none"
+        left    = "none"
+        right   = "none"
+        top     = "none"
+        bottom  = "none"
+    
+
+[canvas:Rectangle]  # Creates a Rectangle named "canvas".
+    width   = 200
+    height  = 200
+    color   = "blue"
+    [logo:Image]    # Creates an Image named logo.
+        source = "pics/logo.png"
+        # "anchors.center" is a predefined field within Image.
+        anchors.center = "parent"
+        x = (canvas.height / 2)
+```
+
+### As for logic
+The ideas so far have been (mostly) about data. The following are just some
+ideas for function definitions.
+
+```toml
+[Class]
+    fnName  = ()
+    
+
+# Implement the function.
+Class.fnName a b c =>
+    print (a + b + c)
+
+# Implement the function in Lua.
+Class.fnName a b c => Lua:
+    print(a + b + c)
+```
+
 
