@@ -1,10 +1,11 @@
 ModDoc
 ======
 
+#### (This project is currently stalled as I look in to dynamic shared object loading.)
+
 Open design document for a declarative Mod definition language for game
 development. Uses [TOML](https://github.com/mojombo/toml#toml) as the
-underlying markup language.(I may create a superset of Toml, though. If I
-do, I'll make sure the extension is minimal. )
+underlying markup language.(I may need to create an extension to TOML. )
 
 
 ## Example
@@ -96,7 +97,7 @@ remove the Velocity structure to shift the focus the dynamic registration system
 	affects = ["ExternalForce"]
 ```
 
-### Entiy Definitions
+### Entity Definitions
 Entity definitions contain a set of Components, optionally giving them default
 values.
 
@@ -156,7 +157,7 @@ The following is somewhat inspired from **Qml.**
 
 ### As for logic
 The ideas so far have been (mostly) about data. The following are just some
-ideas for function definitions.
+ideas for function definitions. These ideas are very unlikely to be worked on.
 
 ```toml
 [Class]
@@ -168,7 +169,7 @@ Class.fnName a b c =>
     print (a + b + c)
 
 # Implement the function in Lua.
-Class.fnName a b c => Lua:
+Class.fnName a b c => lua:
     print(a + b + c)
 ```
 
